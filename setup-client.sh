@@ -56,6 +56,7 @@ fi
 
 client-send AccountCreate $SERVER-$USERNAME /SERVER:$SERVER /HUB:$HUB /USERNAME:$USERNAME /NICNAME:vpn0
 client-send AccountPasswordSet $SERVER-$USERNAME /TYPE:standard
+client-send AccountStartupSet $SERVER-$USERNAME
 client-send AccountConnect $SERVER-$USERNAME
 
 ip addr flush dev vpn_vpn0
