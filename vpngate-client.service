@@ -1,0 +1,10 @@
+[Unit]
+Description=VPN gate(SSL VPN) client daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/vpnclient start
+ExecStop=/usr/bin/vpnclient stop
+
+[Install]
+WantedBy=multi-user.target
