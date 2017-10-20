@@ -11,10 +11,11 @@ $ sudo cp ./vpngate-client.service /etc/systemd/system/vpngate-client.service
 $ sudo systemctl daemon-reload
 ```
 
-2. Second, start vpn client daemon.
+2. Second, start and enable vpn client daemon.
 
 ```
 $ sudo systemctl start vpngate-client.service
+$ sudo systemctl enable vpngate-client.service
 ```
 
 3. Finally, run shell script with root and input your password.
