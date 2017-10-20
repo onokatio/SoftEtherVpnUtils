@@ -64,6 +64,9 @@ ip addr flush dev vpn_vpn0
 echo "Please wait..."
 dhclient vpn_vpn0
 
+if ip r|grep "default"|grep "dev vpn_vpn0"| grep -v "10.201.20.1" > /dev/null 2>&1 ; then
+	ip route del default dev vpn_vpn
+fi
 if ip r|grep "default"|grep "dev vpn_vpn0"| grep "10.201.20.1" > /dev/null 2>&1 ; then
 	ip route del default via 10.201.20.1 dev vpn_vpn0
 fi
