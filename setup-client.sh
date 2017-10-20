@@ -66,4 +66,9 @@ fi
 echo "Please wait..."
 dhclient vpn_vpn0
 
+iphead=$(ip addr|grep "scope global vpn_vpn0"|awk '{print $2}'|cut -d '.' -f-3)
+if ip r|grep "default"|grep "dev vpn_vpn0"| grep "${iphead}.1" > /dev/null 2>&1 ; then
+	ip route del default via ${iphead}.1 dev vpn_vpn0
+fi
+
 echo "seccess !"
