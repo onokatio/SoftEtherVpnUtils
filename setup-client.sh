@@ -58,17 +58,18 @@ client-send AccountCreate $SERVER-$USERNAME /SERVER:$SERVER /HUB:$HUB /USERNAME:
 client-send AccountPasswordSet $SERVER-$USERNAME /TYPE:standard
 client-send AccountConnect $SERVER-$USERNAME
 
-iphead=$(ip addr|grep "scope global vpn_vpn0"|awk '{print $2}'|cut -d '.' -f-3)
-if ip r|grep "default"|grep "dev vpn_vpn0"| grep "${iphead}.1" > /dev/null 2>&1 ; then
-	ip route del default via ${iphead}.1 dev vpn_vpn0
-fi
+ip addr flush dev vpn_vpn0
 
 echo "Please wait..."
 dhclient vpn_vpn0
 
-iphead=$(ip addr|grep "scope global vpn_vpn0"|awk '{print $2}'|cut -d '.' -f-3)
-if ip r|grep "default"|grep "dev vpn_vpn0"| grep "${iphead}.1" > /dev/null 2>&1 ; then
-	ip route del default via ${iphead}.1 dev vpn_vpn0
+if ip r|grep "default"|grep "dev vpn_vpn0"| grep "10.201.1.0" > /dev/null 2>&1 ; then
+	ip route del default via 10.201.1.0 dev vpn_vpn0
 fi
+if ! ip r|grep "10.201.1.0/24 via 10.201.20.1" > /dev/null 2>&1;then
+	ip route add 10.201.1.0/24 via 10.201.20.1
+fi
+
+
 
 echo "seccess !"
