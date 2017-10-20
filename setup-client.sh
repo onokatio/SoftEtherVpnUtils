@@ -36,7 +36,7 @@ function client-send(){
 	vpncmd localhost /CLIENT /CMD $@
 }
 
-if ! client-send NicList | grep "\|vpn0$" >/dev/null 2>&1 ; then
+if ! client-send NicList | grep "vpn0" >/dev/null 2>&1 ; then
 	client-send Niccreate vpn0
 	client-send Nicenable vpn0
 fi
