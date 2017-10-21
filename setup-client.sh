@@ -41,7 +41,7 @@ if ! client-send NicList | grep "vpn0" >/dev/null 2>&1 ; then
 	client-send Nicenable vpn0
 fi
 
-if client-send AccountList | grep "\|$SERVER-$USERNAME" >/dev/null 2>&1 ; then
+if client-send AccountList | grep "$SERVER-$USERNAME" >/dev/null 2>&1 ; then
 	if [ -z "$FORCE" ]; then
 		echo "Account is already registered."
 		echo "Use -f option to force add account"
